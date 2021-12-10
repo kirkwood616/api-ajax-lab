@@ -21,6 +21,14 @@ img {
   margin: 15px;
 }
 
+#textInput {
+  width: 200px;
+}
+
+#input {
+  text-align: center;
+}
+
 #results {
   width: 100%;
   display: flex;
