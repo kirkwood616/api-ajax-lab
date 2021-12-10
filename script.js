@@ -6,7 +6,7 @@ const apiPromise = fetch("https://www.reddit.com/r/aww/.json").then((res) =>
 );
 
 const results = apiPromise.then((data) => {
-  for (let i = 0; i < data.data.children.length; i++) {
+  for (let i = 0; i < 10; i++) {
     const postDiv = document.createElement("div");
     postDiv.classList.add("post");
     // CREATE TITLE
@@ -25,6 +25,7 @@ const results = apiPromise.then((data) => {
     const link = document.createElement("a");
     link.classList.add("link");
     link.href = site;
+    link.target = "_blank";
     link.textContent = site;
     postDiv.appendChild(link);
     // APPEND RESULTS DIV
