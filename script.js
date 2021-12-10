@@ -8,14 +8,22 @@ inputForm.addEventListener("submit", (e) => {
   let inputResult;
   let textInput = document.getElementById("textInput").value;
   inputResult = textInput.toLowerCase().replace(" ", "");
+  clear();
   run(inputResult);
 });
+
+function clear() {
+  const postContent = document.querySelectorAll(".post");
+  if (postContent.length) {
+    postContent.forEach((post) => post.remove());
+  }
+  return;
+}
 
 function run(value) {
   const apiPromise = fetch("https://www.reddit.com/r/" + value + "/.json").then(
     (res) => res.json()
   );
-
   const results = apiPromise.then((data) => {
     for (let i = 0; i < 10; i++) {
       const postDiv = document.createElement("div");
@@ -32,7 +40,8 @@ function run(value) {
       image.alt = "Image or Video";
       postDiv.appendChild(image);
       // CREATE LINK
-      let site = "http://www.reddit.com" + data.data.children[i].data.permalink;
+      let site =
+        "https://www.reddit.com" + data.data.children[i].data.permalink;
       const link = document.createElement("a");
       link.classList.add("link");
       link.href = site;
